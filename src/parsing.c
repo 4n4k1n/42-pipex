@@ -6,11 +6,11 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 14:07:49 by apregitz          #+#    #+#             */
-/*   Updated: 2025/04/28 14:26:33 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/04/28 14:56:57 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../inc/pipex.h"
 
 int	parsing(int ac, char **av)
 {

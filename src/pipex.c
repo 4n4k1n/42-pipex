@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:34 by apregitz          #+#    #+#             */
-/*   Updated: 2025/04/29 16:34:02 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/04/29 19:03:45 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ int	main(int ac, char **av, char **ev)
 		parent(av, ev, fds);
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-		printf("Main Child exit: %d\n", WEXITSTATUS(status));
+		exit(WEXITSTATUS(status));
 	return (0);
 }

@@ -6,11 +6,18 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 23:13:12 by apregitz          #+#    #+#             */
-/*   Updated: 2025/04/29 19:03:25 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/04/29 21:15:38 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
+
+int	check_absulut_path(char *path)
+{
+	if (access(path, F_OK) == 0)
+		return (1);
+	return (0);
+}
 
 void	free_2d_array(char **arr)
 {
@@ -61,9 +68,14 @@ int	process(char *av, char **ev)
 	int		status;
 
 	command = ft_split(av, ' ');
-	path = get_path(*command, ev);
-	if (!path)
-		return (free_2d_array(command), error("error"), 0);
+	if (check_absulut_path(*command))
+		path = *command;
+	else
+	{
+		path = get_path(*command, ev);
+		if (!path)
+			return (free_2d_array(command), error("error"), 0);
+	}
 	pid = fork();
 	if (pid == 0)
 	{

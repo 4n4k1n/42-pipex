@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:34 by apregitz          #+#    #+#             */
-/*   Updated: 2025/04/29 19:03:45 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/01 00:15:29 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // function to process the child
 
-void	child(char **av, char **ev, int *fds)
+void	child(char **av, char **ev, int *fds, pid_t pid)
 {
 	int	input;
 	int	flags;
@@ -28,12 +28,12 @@ void	child(char **av, char **ev, int *fds)
 	close(fds[0]);
 	close(fds[1]);
 	close(input);
-	process(av[2], ev);
+	process(av[2], ev, pid);
 }
 
 // function to process the parent
 
-void	parent(char **av, char **ev, int *fds)
+void	parent(char **av, char **ev, int *fds, pid_t pid)
 {
 	int		output;
 	int		flags;
@@ -47,30 +47,44 @@ void	parent(char **av, char **ev, int *fds)
 	close(fds[0]);
 	close(fds[1]);
 	close(output);
-	process(av[3], ev);
+	process(av[3], ev, pid);
+}
+
+void	open_pids(pid_t *pid1, pid_t *pid2)
+{
+	*pid1 = fork();
+	if (*pid1 != 0)
+		*pid2 = fork();
+}
+
+void	close_pids(pid_t *pid1, pid_t *pid2)
+{
+	int	status;
+
+	waitpid(*pid1, &status, 0);
+	if (WIFEXITED(status))
+		exit(WEXITSTATUS(status));
+	waitpid(*pid2, &status, 0);
+	if (WIFEXITED(status))
+		exit(WEXITSTATUS(status));
 }
 
 int	main(int ac, char **av, char **ev)
 {
-	pid_t	pid;
+	pid_t pid1;
+	pid_t pid2;
 	int		fds[2];
-	int		status;
 
 	(void)ac;
 	if (!parsing(ac, av))
 		return (1);
 	if (pipe(fds) == -1)
-	{
-		printf("im here 1\n");
 		perror("pipe");
-	}
-	pid = fork();
-	if (pid == 0)
-		child(av, ev, fds);
-	else
-		parent(av, ev, fds);
-	waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		exit(WEXITSTATUS(status));
+	open_pids(&pid1, &pid2);
+	if (pid1 == 0)
+		child(av, ev, fds, pid1);
+	if (pid2 == 0)
+		parent(av, ev, fds, pid2);
+	close_pids(&pid1, &pid2);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 23:13:12 by apregitz          #+#    #+#             */
-/*   Updated: 2025/04/29 21:15:38 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/01 00:10:17 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,10 @@ char *get_path(char *command, char **ev)
 	return (free_2d_array(bin_paths), NULL);
 }
 
-int	process(char *av, char **ev)
+int	process(char *av, char **ev, pid_t pid)
 {
 	char	**command;
 	char	*path;
-	pid_t	pid;
 	int		status;
 
 	command = ft_split(av, ' ');
@@ -76,7 +75,6 @@ int	process(char *av, char **ev)
 		if (!path)
 			return (free_2d_array(command), error("error"), 0);
 	}
-	pid = fork();
 	if (pid == 0)
 	{
 		execve(path, command, ev);

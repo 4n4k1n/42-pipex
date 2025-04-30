@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:53 by apregitz          #+#    #+#             */
-/*   Updated: 2025/04/28 23:16:19 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/01 00:17:39 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 int		parsing(int ac, char **av);
 void	error(char *msg);
-int	    process(char *av, char **ev);
-char *get_path(char *command, char **ev);
+int	    process(char *av, char **ev, pid_t pid);
+char    *get_path(char *command, char **ev);
 
 #endif

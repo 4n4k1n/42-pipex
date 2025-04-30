@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 23:13:12 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/01 00:10:17 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/01 00:24:06 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	error(char *msg)
 	exit(1);
 }
 
-char *get_path(char *command, char **ev)
+char	*get_path(char *command, char **ev)
 {
 	int		i;
 	char	**bin_paths;
@@ -82,6 +82,6 @@ int	process(char *av, char **ev, pid_t pid)
 	}
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-		exit(WEXITSTATUS(status));
-	return(1);
+		exit (WEXITSTATUS (status));
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:34 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/01 00:15:29 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/01 00:23:47 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 void	child(char **av, char **ev, int *fds, pid_t pid)
 {
 	int	input;
-	int	flags;
 
-	flags = O_RDONLY;
-	input = open(av[1], flags, 0777);
+	input = open(av[1], O_RDONLY, 0777);
 	if (input == -1)
 		error("open");
 	dup2(input, STDIN_FILENO);
@@ -35,11 +33,9 @@ void	child(char **av, char **ev, int *fds, pid_t pid)
 
 void	parent(char **av, char **ev, int *fds, pid_t pid)
 {
-	int		output;
-	int		flags;
+	int	output;
 
-	flags = O_WRONLY | O_TRUNC | O_CREAT;
-	output = open(av[4], flags , 0644);
+	output = open(av[4], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (output == -1)
 		error("open");
 	dup2(fds[0], STDIN_FILENO);
@@ -71,8 +67,8 @@ void	close_pids(pid_t *pid1, pid_t *pid2)
 
 int	main(int ac, char **av, char **ev)
 {
-	pid_t pid1;
-	pid_t pid2;
+	pid_t	pid1;
+	pid_t	pid2;
 	int		fds[2];
 
 	(void)ac;

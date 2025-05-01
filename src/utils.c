@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 23:13:12 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/01 00:24:06 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/01 10:35:44 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	free_2d_array(char **arr)
 	free(arr);
 }
 
-void	error(char *msg)
+void	error(void)
 {
-	perror(msg);
-	exit(1);
+	perror("Error");
+	exit(EXIT_FAILURE);
 }
 
 char	*get_path(char *command, char **ev)
@@ -57,7 +57,8 @@ char	*get_path(char *command, char **ev)
 			return (free_2d_array(bin_paths), final_path);
 		free(final_path);
 	}
-	return (free_2d_array(bin_paths), NULL);
+	free_2d_array(bin_paths);
+	exit(127);
 }
 
 int	process(char *av, char **ev, pid_t pid)
@@ -73,12 +74,12 @@ int	process(char *av, char **ev, pid_t pid)
 	{
 		path = get_path(*command, ev);
 		if (!path)
-			return (free_2d_array(command), error("error"), 0);
+			return (free_2d_array(command), error(), 0);
 	}
 	if (pid == 0)
 	{
 		execve(path, command, ev);
-		error("execve");
+		error();
 	}
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))

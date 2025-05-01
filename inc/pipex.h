@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:53 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/01 00:19:28 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/01 00:41:43 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "../libft/inc/libft.h"
 
 int		parsing(int ac, char **av);
-void	error(char *msg);
+void	error(void);
 int		process(char *av, char **ev, pid_t pid);
 char	*get_path(char *command, char **ev);
 

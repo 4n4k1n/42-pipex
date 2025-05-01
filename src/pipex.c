@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:34 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/01 00:23:47 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/01 10:57:08 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	child(char **av, char **ev, int *fds, pid_t pid)
 
 	input = open(av[1], O_RDONLY, 0777);
 	if (input == -1)
-		error("open");
+		error();
 	dup2(input, STDIN_FILENO);
 	dup2(fds[1], STDOUT_FILENO);
 	close(fds[0]);
@@ -37,7 +37,7 @@ void	parent(char **av, char **ev, int *fds, pid_t pid)
 
 	output = open(av[4], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (output == -1)
-		error("open");
+		error();
 	dup2(fds[0], STDIN_FILENO);
 	dup2(output, STDOUT_FILENO);
 	close(fds[0]);
@@ -57,9 +57,7 @@ void	close_pids(pid_t *pid1, pid_t *pid2)
 {
 	int	status;
 
-	waitpid(*pid1, &status, 0);
-	if (WIFEXITED(status))
-		exit(WEXITSTATUS(status));
+	waitpid(*pid1, NULL, 0);
 	waitpid(*pid2, &status, 0);
 	if (WIFEXITED(status))
 		exit(WEXITSTATUS(status));

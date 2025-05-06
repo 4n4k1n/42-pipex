@@ -6,7 +6,7 @@
 #    By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 22:42:18 by apregitz          #+#    #+#              #
-#    Updated: 2025/04/29 16:36:52 by apregitz         ###   ########.fr        #
+#    Updated: 2025/05/06 11:14:30 by apregitz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = pipex
 LIBFT = libft/libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
+SANITIZE = -fsanitize=address,undefined
 
 SRC_DIR = src
 OBJ_DIR = obj
@@ -28,19 +29,15 @@ OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 all: $(NAME)
 
 $(LIBFT):
-	@echo "Building libft..."
 	$(MAKE) -C libft
 
 $(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT)
-	@echo "Building $(NAME)..."
-	$(CC) $(OBJS) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(SANITIZE) $(OBJS) $(LIBFT) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@echo "Compiling $<..."
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(SANITIZE) -c $< -o $@
 
 $(OBJ_DIR):
-	@echo "Creating object directory..."
 	mkdir -p $(OBJ_DIR)
 
 clean:
@@ -53,4 +50,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

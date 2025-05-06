@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 23:13:12 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/06 11:16:25 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:07:34 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,9 @@ char	*get_path(char *command, char **ev)
 		free(temp);
 		if (access(final_path, F_OK) == 0)
 			return (free_2d_array(bin_paths), final_path);
-		if (bin_paths[i + 1])
-			free(final_path);
+		free(final_path);
 	}
 	free_2d_array(bin_paths);
-	perror(final_path);
 	exit(127);
 }
 

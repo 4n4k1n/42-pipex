@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 23:13:12 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/01 10:35:44 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/06 11:16:25 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	free_2d_array(char **arr)
 	i = 0;
 	while (arr[i])
 		free(arr[i++]);
-	free(arr[i]);
 	free(arr);
 }
 
@@ -44,7 +43,7 @@ char	*get_path(char *command, char **ev)
 	char	*temp;
 
 	i = 0;
-	while (!ft_strnstr(ev[i], "PATH", 4))
+	while (!ft_strnstr(ev[i], "PATH=", 5))
 		i++;
 	bin_paths = ft_split(ev[i], ':');
 	i = -1;
@@ -55,34 +54,40 @@ char	*get_path(char *command, char **ev)
 		free(temp);
 		if (access(final_path, F_OK) == 0)
 			return (free_2d_array(bin_paths), final_path);
-		free(final_path);
+		if (bin_paths[i + 1])
+			free(final_path);
 	}
 	free_2d_array(bin_paths);
+	perror(final_path);
 	exit(127);
 }
 
-int	process(char *av, char **ev, pid_t pid)
+void	in_child_process(t_data *data, char *path, char **cmd)
+{
+	if (dup2(data->fd[0], STDIN_FILENO) == -1 || dup2(data->fd[1], STDOUT_FILENO) == -1)
+		error();
+	close(data->fd[0]);
+	close(data->fd[1]);
+	execve(path, cmd, data->ep);
+	error();
+}
+
+int	exec_cmd(t_data *data)
 {
 	char	**command;
 	char	*path;
+	pid_t	pid;
 	int		status;
 
-	command = ft_split(av, ' ');
-	if (check_absulut_path(*command))
-		path = *command;
-	else
-	{
-		path = get_path(*command, ev);
-		if (!path)
-			return (free_2d_array(command), error(), 0);
-	}
+	command = ft_split(data->av[data->i], ' ');
+	path = get_path(*command, data->ep);
+	if (!path)
+		return (free_2d_array(command), error(), 0);
+	pid = fork();
 	if (pid == 0)
-	{
-		execve(path, command, ev);
-		error();
-	}
+		in_child_process(data, path, command);
 	waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		exit (WEXITSTATUS (status));
+	free(path);
+	free_2d_array(command);
 	return (1);
 }

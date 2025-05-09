@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 23:13:12 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/06 13:41:59 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/09 21:44:24 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ char	*get_path(char *command, char **ev)
 
 void	in_child_process(t_data *data, char *path, char **cmd)
 {
-	if (dup2(data->fd[0], STDIN_FILENO) == -1 || dup2(data->fd[1], STDOUT_FILENO) == -1)
+	if (dup2(data->fd[0], STDIN_FILENO) == -1 \
+	|| dup2(data->fd[1], STDOUT_FILENO) == -1)
 		error();
 	close(data->fd[0]);
 	close(data->fd[1]);

@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:13:39 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/09 21:27:05 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/09 21:42:02 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	here_doc(t_data *data, char *lim)
 		if (ft_strncmp(lim, str, len) == 0 && str[len] == '\n')
 		{
 			free(str);
-			break;
+			break ;
 		}
 		write(fd[1], str, ft_strlen(str));
 		free(str);

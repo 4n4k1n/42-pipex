@@ -6,18 +6,11 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 23:13:12 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/06 12:07:34 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:41:59 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
-
-int	check_absulut_path(char *path)
-{
-	if (access(path, F_OK) == 0)
-		return (1);
-	return (0);
-}
 
 void	free_2d_array(char **arr)
 {

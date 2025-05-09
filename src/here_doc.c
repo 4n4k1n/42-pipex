@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 13:13:39 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/09 20:29:09 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/09 21:27:05 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	here_doc(t_data *data, char *lim)
 		error();
 	while (1)
 	{
-		write(fd[1], "heredoc>", 8);
+		write(1, "heredoc>", 8);
 		str = get_next_line(0);
 		if (!str)
 			return (close(data->fd[0]), close(data->fd[0]), error());

@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:53 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/05 16:52:27 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:11:26 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <fcntl.h>
 # include "../libft/inc/libft.h"
 
+# ifndef BONUS
+#  define BONUS 0
+# endif
+
 typedef struct s_data
 {
 	int		fd[2];
@@ -31,9 +35,10 @@ typedef struct s_data
 	char	**ep;
 }		t_data;
 
-int		parsing(int ac, char **av);
+int		parsing(int ac);
 void	error(void);
 int		exec_cmd(t_data *data);
 char	*get_path(char *command, char **ev);
+void	here_doc(t_data *data, char *lim);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 22:42:18 by apregitz          #+#    #+#              #
-#    Updated: 2025/05/06 11:14:30 by apregitz         ###   ########.fr        #
+#    Updated: 2025/05/09 20:28:36 by apregitz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,15 @@ LIBFT = libft/libft.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
-SANITIZE = -fsanitize=address,undefined
+# SANITIZE = -fsanitize=address,undefined
 
 SRC_DIR = src
 OBJ_DIR = obj
 
 SRCS = pipex.c \
 	parsing.c \
-	utils.c
+	utils.c \
+	here_doc.c
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
@@ -32,13 +33,16 @@ $(LIBFT):
 	$(MAKE) -C libft
 
 $(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(SANITIZE) $(OBJS) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) $(SANITIZE) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
+
+bonus: fclean
+	@$(MAKE) all CFLAGS="$(CFLAGS) -D BONUS=1"
 
 clean:
 	$(MAKE) -C libft clean
@@ -50,4 +54,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

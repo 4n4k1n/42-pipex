@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:34 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/09 21:44:05 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/09 22:00:19 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int ac, char **av, char **ep)
 
 	if (!parsing(ac) || !init_struct(&data, ac, av, ep))
 		return (1);
-	if (ft_strncmp(av[1], "here_doc", 9) == 0)
+	if (BONUS && ft_strncmp(av[1], "here_doc", 9) == 0)
 		here_doc(&data, av[2]);
 	while (++(data.i) < ac - 2)
 		build_child(&data, 0);

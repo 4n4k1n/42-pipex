@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:53 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/07 20:11:26 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/09 23:30:52 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include "../libft/inc/libft.h"
 
 # ifndef BONUS

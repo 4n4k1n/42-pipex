@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:34 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/06 11:08:10 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/09 21:36:37 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,18 @@ void	build_child(t_data *data, int last)
 
 int	init_struct(t_data *data, int ac, char **av, char **ep)
 {
-	data->input_file = open(av[1], O_RDONLY, 0777);
 	if (data->input_file == -1)
 		return (0);
-	data->output_file = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (data->output_file == -1)
-		return (close(data->input_file), 0);
+	if (BONUS && ft_strncmp(av[1], "here_doc", 9) == 0)
+		data->output_file = open(av[ac - 1], O_WRONLY | O_CREAT | O_APPEND, 0777);
+	else
+	{
+		data->input_file = open(av[1], O_RDONLY, 0777);
+		data->fd[0] = data->input_file;
+		data->output_file = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+		if (data->output_file == -1)
+			return (close(data->input_file), 0);
+	}
 	data->fd[0] = data->input_file;
 	data->ac = ac;
 	data->ep = ep;
@@ -53,10 +59,10 @@ int	main(int ac, char **av, char **ep)
 {
 	t_data	data;
 
-	if (!parsing(ac, av))
+	if (!parsing(ac) || !init_struct(&data, ac, av, ep))
 		return (1);
-	if (!init_struct(&data, ac, av, ep))
-		return (1);
+	if (ft_strncmp(av[1], "here_doc", 9) == 0)
+		here_doc(&data, av[2]);
 	while (++(data.i) < ac - 2)
 		build_child(&data, 0);
 	build_child(&data, 1);

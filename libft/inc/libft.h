@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:03:31 by anakin            #+#    #+#             */
-/*   Updated: 2025/03/09 15:04:55 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/09 19:48:44 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define LIBFT_H
 
 # include "printf.h"
+# include "get_next_line_bonus.h"
+# include "extra.h"
 # include <stdlib.h>
 # include <unistd.h>
 

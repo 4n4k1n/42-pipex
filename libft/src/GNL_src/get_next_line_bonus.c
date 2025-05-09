@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:13:40 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/06 13:24:01 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:16:46 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_remove_garbage(char *buffer)
 	int	i;
 	int	check;
 
-	check = ft_strclen(buffer, '\n');
+	check = ft_strclen_gnl(buffer, '\n');
 	if (check == NOT_FOUND)
 	{
 		buffer[0] = '\0';
@@ -34,11 +34,11 @@ char	*ft_check_buffer(char *buffer)
 	int	check;
 
 	if (!buffer[0])
-		return (ft_calloc(1, 1));
-	check = ft_strclen(buffer, '\n');
+		return (ft_calloc_gnl(1, 1));
+	check = ft_strclen_gnl(buffer, '\n');
 	if (check != NOT_FOUND)
-		return (ft_strdup(buffer, '\n'));
-	return (ft_strdup(buffer, '\0'));
+		return (ft_strdup_gnl(buffer, '\n'));
+	return (ft_strdup_gnl(buffer, '\0'));
 }
 
 int	ft_read_in_buffer(int fd, char *buffer, int *active)
@@ -66,7 +66,7 @@ char	*ft_read_line(int fd, char *buffer)
 	str = ft_check_buffer(buffer);
 	if (!str)
 		return (NULL);
-	while (ft_strclen(str, '\n') == NOT_FOUND && active)
+	while (ft_strclen_gnl(str, '\n') == NOT_FOUND && active)
 	{
 		read_result = ft_read_in_buffer(fd, buffer, &active);
 		if (read_result == -1)
@@ -76,12 +76,12 @@ char	*ft_read_line(int fd, char *buffer)
 		temp = ft_check_buffer(buffer);
 		if (!temp)
 			return (free(str), NULL);
-		str = ft_strjoin(str, temp);
+		str = ft_strjoin_gnl(str, temp);
 		if (!str)
 			return (NULL);
 	}
 	ft_remove_garbage(buffer);
-	return (ft_check_str(str));
+	return (ft_check_str_gnl(str));
 }
 
 char	*get_next_line(int fd)

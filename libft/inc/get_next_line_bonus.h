@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 22:54:28 by apregitz          #+#    #+#             */
-/*   Updated: 2025/03/20 13:01:14 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:15:11 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 char	*ft_read_file_until_newline(int fd, char *buffer, int *read_error);
 char	*get_next_line(int fd);
 
-char	*ft_strjoin(const char *s1, const char *s2);
-int		ft_strclen(const char *str, int ch);
-void	*ft_calloc(size_t count, size_t size);
-char	*ft_strdup(const char *string, char ch);
-void	*ft_check_str(char *str);
+char	*ft_strjoin_gnl(const char *s1, const char *s2);
+int		ft_strclen_gnl(const char *str, int ch);
+void	*ft_calloc_gnl(size_t count, size_t size);
+char	*ft_strdup_gnl(const char *string, char ch);
+void	*ft_check_str_gnl(char *str);
 
 #endif

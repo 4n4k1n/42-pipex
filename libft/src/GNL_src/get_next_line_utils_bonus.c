@@ -6,13 +6,13 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 00:21:05 by apregitz          #+#    #+#             */
-/*   Updated: 2025/03/21 15:13:41 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:21:29 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc_gnl(size_t count, size_t size)
 {
 	size_t	i;
 	void	*arr;
@@ -33,7 +33,7 @@ void	*ft_calloc(size_t count, size_t size)
 	return (arr);
 }
 
-int	ft_strclen(const char *str, int ch)
+int	ft_strclen_gnl(const char *str, int ch)
 {
 	int	i;
 
@@ -53,7 +53,7 @@ int	ft_strclen(const char *str, int ch)
 	return (NOT_FOUND);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin_gnl(const char *s1, const char *s2)
 {
 	int		len_s1;
 	int		len_s2;
@@ -62,9 +62,9 @@ char	*ft_strjoin(const char *s1, const char *s2)
 
 	if (!s1 || !s2)
 		return (free((void *)s1), free((void *)s2), NULL);
-	len_s1 = ft_strclen(s1, 0);
-	len_s2 = ft_strclen(s2, 0);
-	arr = (char *)ft_calloc(len_s1 + len_s2 + 1, 1);
+	len_s1 = ft_strclen_gnl(s1, 0);
+	len_s2 = ft_strclen_gnl(s2, 0);
+	arr = (char *)ft_calloc_gnl(len_s1 + len_s2 + 1, 1);
 	if (!arr)
 		return (free((void *)s1), free((void *)s2), NULL);
 	i = -1;
@@ -80,20 +80,20 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	return (arr);
 }
 
-char	*ft_strdup(const char *string, char ch)
+char	*ft_strdup_gnl(const char *string, char ch)
 {
 	int		len;
 	int		i;
 	char	*new_arr;
 
 	if (!string || !*string)
-		return (ft_calloc(1, 1));
+		return (ft_calloc_gnl(1, 1));
 	len = 0;
 	while (string[len] && string[len] != ch)
 		len++;
 	if (ch != '\0' && string[len] == ch)
 		len++;
-	new_arr = (char *)ft_calloc(len + 1, 1);
+	new_arr = (char *)ft_calloc_gnl(len + 1, 1);
 	if (!new_arr)
 		return (NULL);
 	i = -1;
@@ -102,7 +102,7 @@ char	*ft_strdup(const char *string, char ch)
 	return (new_arr);
 }
 
-void	*ft_check_str(char *str)
+void	*ft_check_str_gnl(char *str)
 {
 	if (!(*str))
 		return (free((void *)str), NULL);

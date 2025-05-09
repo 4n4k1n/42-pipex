@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 22:54:28 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/07 20:15:11 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/09 23:52:08 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4
+#  define BUFFER_SIZE 128
 # endif
 
 # define NOT_FOUND -1

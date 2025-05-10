@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:53 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/10 12:38:40 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/10 12:45:58 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,21 @@ typedef struct s_data
 	char	**ep;
 }		t_data;
 
-int		parsing(int ac);
+// utils
 void	error(void);
+void	free_2d_array(char **arr);
 
+// parsing
+int		parsing(int ac);
+
+// here_doc
 void	here_doc(t_data *data, char *lim);
 
+// building / prepareing the child
 void	build_child(t_data *data, int last);
 
+// init struct and open files
 int		init_struct(t_data *data, int ac, char **av, char **ep);
 
-void	free_2d_array(char **arr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:53 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/10 12:47:51 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/10 12:48:14 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,5 @@ void	build_child(t_data *data, int last);
 
 // init struct and open files
 int		init_struct(t_data *data, int ac, char **av, char **ep);
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:53 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/10 12:29:24 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/10 12:33:51 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ int		exec_cmd(t_data *data);
 char	*get_path(char *command, char **ev);
 void	here_doc(t_data *data, char *lim);
 
+void	build_child(t_data *data, int last);
+
 int	init_struct(t_data *data, int ac, char **av, char **ep);
 int	open_files(t_data *data);
+
+void	free_2d_array(char **arr);
 
 #endif

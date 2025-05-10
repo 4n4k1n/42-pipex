@@ -6,7 +6,7 @@
 #    By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 22:42:18 by apregitz          #+#    #+#              #
-#    Updated: 2025/05/10 12:27:47 by apregitz         ###   ########.fr        #
+#    Updated: 2025/05/10 12:35:25 by apregitz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ NAME = pipex
 LIBFT = libft/libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
-# SANITIZE = -fsanitize=address,undefined
+CFLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = src
 OBJ_DIR = obj
@@ -24,7 +23,8 @@ SRCS = pipex.c \
 	parsing.c \
 	utils.c \
 	here_doc.c \
-	init.c
+	init.c \
+	child.c
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 

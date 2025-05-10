@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:34 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/10 11:55:07 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/10 12:01:31 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	build_child(t_data *data, int last)
 
 	if (!last && pipe(fd) == -1)
 		error();
-	// printf("fd[0]=%d\nfd[1]=%d\n", fd[0], fd[1]);
 	if (last)
 		data->fd[1] = data->output_file;
 	else
@@ -63,7 +62,6 @@ int	open_files(t_data *data)
 
 int	init_struct(t_data *data, int ac, char **av, char **ep)
 {
-	
 	data->fd[0] = data->input_file;
 	data->ac = ac;
 	data->ep = ep;
@@ -85,7 +83,7 @@ int	main(int ac, char **av, char **ep)
 	while (++(data.i) < ac - 2)
 		build_child(&data, 0);
 	build_child(&data, 1);
-	while(wait(&exit_code) > 0)
+	while (wait(&exit_code) > 0)
 		;
 	if (WIFEXITED(exit_code))
 		exit(WEXITSTATUS(exit_code));

@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:34 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/10 00:10:48 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/10 11:55:07 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	init_struct(t_data *data, int ac, char **av, char **ep)
 int	main(int ac, char **av, char **ep)
 {
 	t_data	data;
+	int		exit_code;
 
 	if (!parsing(ac) || !init_struct(&data, ac, av, ep))
 		return (1);
@@ -84,5 +85,9 @@ int	main(int ac, char **av, char **ep)
 	while (++(data.i) < ac - 2)
 		build_child(&data, 0);
 	build_child(&data, 1);
+	while(wait(&exit_code) > 0)
+		;
+	if (WIFEXITED(exit_code))
+		exit(WEXITSTATUS(exit_code));
 	return (0);
 }

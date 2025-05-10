@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 23:13:12 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/09 21:44:24 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/10 11:52:01 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	exec_cmd(t_data *data)
 	char	**command;
 	char	*path;
 	pid_t	pid;
-	int		status;
 
 	command = ft_split(data->av[data->i], ' ');
 	path = get_path(*command, data->ep);
@@ -78,7 +77,6 @@ int	exec_cmd(t_data *data)
 	pid = fork();
 	if (pid == 0)
 		in_child_process(data, path, command);
-	waitpid(pid, &status, 0);
 	free(path);
 	free_2d_array(command);
 	return (1);

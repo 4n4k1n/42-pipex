@@ -6,7 +6,7 @@
 #    By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 22:42:18 by apregitz          #+#    #+#              #
-#    Updated: 2025/05/09 20:28:36 by apregitz         ###   ########.fr        #
+#    Updated: 2025/05/10 11:31:13 by apregitz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-bonus: fclean
+bonus:
 	@$(MAKE) all CFLAGS="$(CFLAGS) -D BONUS=1"
 
 clean:
@@ -52,6 +52,8 @@ fclean: clean
 	$(MAKE) -C libft fclean
 	rm -f $(NAME)
 
+bre: fclean bonus
+
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re bonus bre

@@ -6,7 +6,7 @@
 #    By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 22:42:18 by apregitz          #+#    #+#              #
-#    Updated: 2025/05/10 11:31:13 by apregitz         ###   ########.fr        #
+#    Updated: 2025/05/10 12:27:47 by apregitz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ OBJ_DIR = obj
 SRCS = pipex.c \
 	parsing.c \
 	utils.c \
-	here_doc.c
+	here_doc.c \
+	init.c
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 

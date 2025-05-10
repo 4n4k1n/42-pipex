@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:31:33 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/10 12:37:31 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/10 14:50:40 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static char	*get_path(char *command, char **ev)
 	char	*final_path;
 	char	*temp;
 
+	if (access(command, F_OK) == 0)
+		return (ft_strdup(command));
 	i = 0;
 	while (!ft_strnstr(ev[i], "PATH=", 5))
 		i++;

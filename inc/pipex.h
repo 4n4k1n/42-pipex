@@ -6,7 +6,7 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 10:35:53 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/10 12:45:58 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/10 12:47:51 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_data
 	int		i;
 	char	**av;
 	char	**ep;
-}		t_data;
+}			t_data;
 
 // utils
 void	error(void);

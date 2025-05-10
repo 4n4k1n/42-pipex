@@ -6,13 +6,13 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:24:52 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/10 12:29:03 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/10 12:37:46 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-int	open_files(t_data *data)
+static int	open_files(t_data *data)
 {
 	int	hd_flags;
 	int	flags;

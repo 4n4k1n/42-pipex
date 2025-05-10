@@ -6,13 +6,13 @@
 /*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:31:33 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/10 12:32:21 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/10 12:37:31 by apregitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-char	*get_path(char *command, char **ev)
+static char	*get_path(char *command, char **ev)
 {
 	int		i;
 	char	**bin_paths;
@@ -37,7 +37,7 @@ char	*get_path(char *command, char **ev)
 	exit(127);
 }
 
-void	in_child_process(t_data *data, char *path, char **cmd)
+static void	in_child_process(t_data *data, char *path, char **cmd)
 {
 	if (dup2(data->fd[0], STDIN_FILENO) == -1 \
 	|| dup2(data->fd[1], STDOUT_FILENO) == -1)
@@ -48,7 +48,7 @@ void	in_child_process(t_data *data, char *path, char **cmd)
 	error();
 }
 
-int	exec_cmd(t_data *data)
+static int	exec_cmd(t_data *data)
 {
 	char	**command;
 	char	*path;

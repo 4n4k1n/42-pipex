@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anakin <anakin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hntest2 <hntest2@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:31:33 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/24 17:47:14 by anakin           ###   ########.fr       */
+/*   Updated: 2025/05/25 12:14:54 by hntest2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ void	build_child(t_data *data, int last)
 	else
 		data->fd[1] = fd[1];
 	exec_cmd(data);
+	close(data->fd[0]);
 	if (last)
 		close(data->fd[1]);
 	else
 	{
 		close(fd[1]);
-		close(data->fd[0]);
 		data->fd[0] = fd[0];
 	}
 }

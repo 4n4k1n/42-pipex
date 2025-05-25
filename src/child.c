@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apregitz <apregitz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anakin <anakin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:31:33 by apregitz          #+#    #+#             */
-/*   Updated: 2025/05/10 14:50:40 by apregitz         ###   ########.fr       */
+/*   Updated: 2025/05/24 17:47:14 by anakin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	exec_cmd(t_data *data)
 	char	*path;
 	pid_t	pid;
 
-	command = ft_split(data->av[data->i], ' ');
+	command = ft_splitx(data->av[data->i]);
 	path = get_path(*command, data->ep);
 	if (!path)
 		return (free_2d_array(command), error(), 0);

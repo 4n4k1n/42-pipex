@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_splitx_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anakin <anakin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hntest2 <hntest2@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 08:27:20 by anakin            #+#    #+#             */
-/*   Updated: 2025/05/25 10:10:07 by anakin           ###   ########.fr       */
+/*   Updated: 2025/05/25 11:12:00 by hntest2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	calc_arg_lengthx(const char *s, int start)
 			data.in_s_quote = !data.in_s_quote;
 		else if (s[data.pos] == '"' && !data.in_s_quote)
 			data.in_d_quote = !data.in_d_quote;
-		else if (!data.in_s_quote && !data.in_d_quote && 
-				is_whitespacex(s[data.pos]))
-			break;
+		else if (!data.in_s_quote && !data.in_d_quote \
+			&& is_whitespacex(s[data.pos]))
+			break ;
 		else
 			data.arg_len++;
 	}

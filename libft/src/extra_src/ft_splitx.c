@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_splitx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anakin <anakin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hntest2 <hntest2@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 10:15:32 by anakin            #+#    #+#             */
-/*   Updated: 2025/05/25 10:15:34 by anakin           ###   ########.fr       */
+/*   Updated: 2025/05/25 11:11:20 by hntest2          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,8 @@ char	**ft_splitx(const char *s)
 	data.pos = skip_whitespacex(s, 0);
 	while (data.current_arg < data.arg_count && s[data.pos])
 	{
-		data.result[data.current_arg] = extract_arg(s, data.pos, &data.next_pos);
+		data.result[data.current_arg] = \
+		extract_arg(s, data.pos, &data.next_pos);
 		if (!data.result[data.current_arg])
 			return (ft_free_splitx(data.result, data.current_arg), NULL);
 		data.current_arg++;
@@ -159,4 +160,3 @@ char	**ft_splitx(const char *s)
 // 	}
 // 	return (0);
 // }
-

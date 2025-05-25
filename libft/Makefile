@@ -2,6 +2,7 @@ NAME = libft.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+# SFLAGS = -fsanitize=address,undefined
 AR = ar rcs
 RM = rm -f
 
@@ -28,7 +29,7 @@ PRINTF_SRCS = ft_error.c ft_printf.c ft_putchar.c ft_puthex.c \
 
 GNL_SRCS = get_next_line_bonus.c get_next_line_utils_bonus.c
 
-EXTRA_SRC = ft_strrev.c ft_strsmsh.c ft_swp.c ft_strclen.c ft_kllarr.c
+EXTRA_SRC = ft_strrev.c ft_strsmsh.c ft_swp.c ft_strclen.c ft_kllarr.c ft_splitx.c ft_splitx_utils.c
 
 SRCS := $(LIBFT_SRCS) $(PRINTF_SRCS) $(EXTRA_SRC) $(GNL_SRCS)
 
